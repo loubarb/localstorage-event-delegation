@@ -28,7 +28,8 @@
 <script>
   const addItems = document.querySelector('.add-items');
   const itemsList = document.querySelector('.plates');
-  const items = [];
+    // will try to get from localStore, otherwise fallback to empty array
+  const items = JSON.parse(localStorage.getItem('items')) || [];
 
   function addItem(e) {
     e.preventDefault();
@@ -41,6 +42,7 @@
 
     items.push(item);
     populateList(items, itemsList);
+    localStorage.setItem('items', JSON.stringify(items)); // converts data into string so browser can read it & save it
     this.reset(); // clears form box after user submits their input
     // console.log(item);
   }
@@ -58,6 +60,8 @@
   }
 
   addItems.addEventListener('submit', addItem);
+
+  populateList(items, itemsList);
 
 </script>
 
