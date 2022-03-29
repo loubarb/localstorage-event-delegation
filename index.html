@@ -40,8 +40,21 @@
     };
 
     items.push(item);
+    populateList(items, itemsList);
     this.reset(); // clears form box after user submits their input
     // console.log(item);
+  }
+
+  // creates a list item for each item added with a label inside of it
+  function populateList(plates = [], platesList) {
+    platesList.innerHTML = plates.map((plate, i) => {
+      return `
+        <li>
+          <input type="checkbox" data-index=${i} id="item${i}" ${plate.done ? 'check' : ''} />
+          <label for="item${i}">${plate.text}</label>
+        </li>`;
+        // ^^id & for are the same thing - when you click on label, input checks itself
+    }).join(''); // .map returns array and .join turns array into 1 big string
   }
 
   addItems.addEventListener('submit', addItem);
