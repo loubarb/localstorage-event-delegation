@@ -30,6 +30,20 @@
   const itemsList = document.querySelector('.plates');
   const items = [];
 
+  function addItem(e) {
+    e.preventDefault();
+    // 'this' is the form tag. instead of using document.querySelector.
+    const text = (this.querySelector('[name=item]')).value;
+    const item = {
+      text: text,
+      done: false
+    };
+    this.reset(); // clears form box after user submits their input
+    // console.log(item);
+  }
+
+  addItems.addEventListener('submit', addItem);
+
 </script>
 
 
